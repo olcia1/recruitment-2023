@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const GLOBALS = {
@@ -53,12 +53,19 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: true,
       template: 'src/public/index.html',
       filename: 'index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new TransferWebpackPlugin([{ from: 'src/public' }], '.'),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'src/public', to: '.'
+        }
+      ]
+    }),
     new webpack.DefinePlugin(GLOBALS),
   ],
 };

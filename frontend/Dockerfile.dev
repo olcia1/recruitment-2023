@@ -1,0 +1,6 @@
+FROM node:16.20.0-buster
+WORKDIR /app
+COPY . .
+RUN npm i
+ENTRYPOINT [ "npm", "start" ]
+EXPOSE 9000

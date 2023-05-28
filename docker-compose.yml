@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  frontend:
+    tty: true
+    build:
+      context: frontend
+      dockerfile: ./Dockerfile.dev
+    environment:
+      - ENDPOINT=http://localhost:9000/api
+    container_name: frontend
+    ports:
+      - 8000:8000
+  backend:
+    tty: true
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    environment:
+      - APPID=${APPID}
+    container_name: backend
+    ports:
+      - 9000:9000

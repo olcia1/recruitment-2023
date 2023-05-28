@@ -36,8 +36,8 @@ Here are some things in different categories that you can do to make the app bet
 
 * Add a **docker-compose.yml** -file connecting the frontend and the backend, enabling running the app in a connected set of containers.
 
-* The developers are still keen to run the app and its pipeline on their own computers. Share the development files for the container by using volumes, and make sure the containers are started with a command enabling hot reload.
-
+* The developers are still keen to run the app and its pipeline on their own computers. Share the development files for the container by using volumes, and make sure the containers are started with a command enabling hot reload. 
+   
 ### Node and React development
 
 *Node and React applications are highly popular technologies. Understanding them will give you an advantage in front- and back-end development projects.*
@@ -88,7 +88,7 @@ Here are some things in different categories that you can do to make the app bet
 
 * The app must be ready to deploy and work flawlessly.
 
-* The app must be easy to deploy to your local machine with and without Docker. 
+* The app must be easy to deploy to your local machine with and without Docker.
 
 * Detailed instructions to run the app should be included in your forked version because a customer would expect detailed instructions also.
 
@@ -97,3 +97,61 @@ Here are some things in different categories that you can do to make the app bet
 * Try to avoid any bugs or weirdness in the operating logic.
 
 * Feel free to add would-be-nice-to-haves in the app / infra setup that you didn't have time to complete as possible further improvements in README.
+
+
+## Project 🌦️
+This application shows upcoming weather forecasts.
+
+## Technologies 🛠️
+This project was built using the following technologies:
+* Node.js 📦
+* Docker 🐳
+* Docker Compose 🐳
+* Terraform 🌍
+* Azure ☁️
+
+## Prerequisites ✅
+To run the project locally, you will need to have the following installed:
+* Node.js and npm 📦
+* Docker 🐳
+
+To deploy the application to Azure, you will need:
+* Azure CLI (az-cli) ☁️
+* Terraform 🌍
+* Docker 🐳 (for building Azure App Service images)
+
+## Run the application locally with Docker 🚀
+1. Copy .env.example to .env and fill it with your OpenWeatherMap API key.
+2. Start the app (frontend and backend) using Docker Compose with the command docker-compose up.
+3. Alternatively, you can build and start the containers manually without Docker Compose using the following commands:
+
+Frontend:
+```
+docker build -t frontend .
+docker run -p 8000:8000 frontend
+```
+Backend:
+```
+docker build -t backend .
+docker run -e APPID='your-api-key' -p 9000:9000 backend
+```
+Remember to replace 'your-api-key' with your actual API key.
+
+4. Open your browser and visit http://localhost:8000 to view the application. To see a response from the backend, visit http://localhost:9000/api/weather.
+
+## Run the application locally without Docker 🚀
+1. Navigate to the frontend or backend directory and install the dependencies using npm install.
+2. Export the API key for the backend using the command export APPID='your-api-key'.
+3. Start the application using the command npm start.
+4. Open your browser and visit http://localhost:8000 to view the application. To see a response from the backend, visit http://localhost:9000/api/weather.
+
+## Run the application in the Azure Cloud ☁️
+1. Login to azure-cli with `az login`.
+2. Run `terraform init` to initialize state and download the providers.
+3. Remember to edit the `terraform.tfvars` with your desired region to deploy the app to and your openweathermap.com API key.
+4. Run `terraform plan -out plan` and review the plan.
+5. Apply the plan with `terraform apply plan` and answer `yes` to approve it.
+6. You should get two outputs with addresses of frontend and backend.
+
+## Embrace the Weather! ☀️🌧️🌈⛈️❄️🌤️🌩️🌦️
+Feel free to explore the upcoming weather with this application and enjoy your day with a touch of technology and nature's beauty!

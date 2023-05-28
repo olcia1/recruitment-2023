@@ -1,0 +1,11 @@
+FROM node:16.20.0-buster-slim AS builder
+WORKDIR /app
+COPY . .
+
+RUN npm install
+COPY ./src /app/src
+ARG ENDPOINT=http://localhost:9000/api
+RUN npm run build
+
+FROM nginx:alpine-slim
+COPY --from=builder /app/dist /usr/share/nginx/html
