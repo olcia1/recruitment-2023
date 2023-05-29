@@ -127,7 +127,7 @@ To deploy the application to Azure, you will need:
 
 Frontend:
 ```
-docker build -t frontend .
+docker build -f Dockerfile.dev -t frontend .
 docker run -p 8000:8000 frontend
 ```
 Backend:
@@ -152,6 +152,7 @@ Remember to replace 'your-api-key' with your actual API key.
 4. Run `terraform plan -out plan` and review the plan.
 5. Apply the plan with `terraform apply plan` and answer `yes` to approve it.
 6. You should get two outputs with addresses of frontend and backend.
-
+7. Open your browser and visit https://weather-frontend-aleksandra.azurewebsites.net to view the application.
+   
 ## Embrace the Weather! ☀️🌧️🌈⛈️❄️🌤️🌩️🌦️
 Feel free to explore the upcoming weather with this application and enjoy your day with a touch of technology and nature's beauty!
